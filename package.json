@@ -2,7 +2,7 @@
   "name": "video-streaming-platform",
   "version": "1.0.0",
   "type": "module",
-  "description": "��#\u0000 \u0000v\u0000i\u0000d\u0000e\u0000o\u0000-\u0000s\u0000t\u0000r\u0000e\u0000a\u0000m\u0000i\u0000n\u0000g\u0000-\u0000p\u0000l\u0000a\u0000t\u0000f\u0000o\u0000r\u0000m\u0000\r\u0000 \u0000",
+  "description": "#\u0000 \u0000v\u0000i\u0000d\u0000e\u0000o\u0000-\u0000s\u0000t\u0000r\u0000e\u0000a\u0000m\u0000i\u0000n\u0000g\u0000-\u0000p\u0000l\u0000a\u0000t\u0000f\u0000o\u0000r\u0000m\u0000\r\u0000 \u0000",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -12,5 +12,10 @@
   "license": "ISC",
   "devDependencies": {
     "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.3"
   }
 }
