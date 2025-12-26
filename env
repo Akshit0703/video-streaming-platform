@@ -1,2 +1,3 @@
 PORT = 8000
 MONGODB_URI = mongodb+srv://akshitlakhanpal07_db_user:Akshit123@cluster0.fau7dnt.mongodb.net
+CORS_ORIGIN=*
