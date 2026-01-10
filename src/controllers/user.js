@@ -58,6 +58,4 @@ const registerUser = asyncHandler(async (req, res) => {
   );
 });
 
-conti;
-
 export { registerUser };
