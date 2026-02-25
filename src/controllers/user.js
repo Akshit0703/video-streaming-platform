@@ -23,7 +23,7 @@ const registerUser = asyncHandler(async (req, res) => {
     throw new ApiError(409, "User with email or username already exists");
   }
   const avatarLocalPath = req.files?.avatar[0]?.path; // this is possible due to using multer in the middleware
-  const coverImageLocalPath = req.files?.coverImage[0]?.path;
+  // const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
   if (!avatarLocalPath) {
     throw new ApiError(400, "Avatar is required");
@@ -32,6 +32,13 @@ const registerUser = asyncHandler(async (req, res) => {
   const avatar = await uploadOnCloudinary(avatarLocalPath); //returns cloudinary url
   const coverImage = await uploadOnCloudinary(coverImageLocalPath); //return cloudinary url
 
+  let coverImageLocalPath;
+  if (
+    req.files &&
+    Array.isArray(req.files.coverImage && req.files.coverImage.length > 0)
+  ) {
+    coverImageLocalPath = req.files.coverImage[0].path;
+  }
   if (!avatar) {
     throw new ApiError(400, "Avatar is required");
   }

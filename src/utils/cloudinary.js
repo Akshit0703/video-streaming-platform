@@ -1,4 +1,4 @@
-import { v2 } from "cloudinary";
+import { v2 as cloudinary } from "cloudinary";
 import { response } from "express";
 import fs from "fs";
 
@@ -22,4 +22,4 @@ const uploadOnCloudinary = async (localFilePath) => {
   }
 };
 
-export default uploadOnCLoudinary;
+export default uploadOnCloudinary;
