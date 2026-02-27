@@ -19,6 +19,6 @@ app.use(cookieParser());
 
 import userRouter from "./routes/user.js";
 
-app.use("api/v1/users", userRouter); // passes control to the user router using middleware
+app.use("/api/v1/users", userRouter); // passes control to the user router using middleware
 
 export { app };
