@@ -37,11 +37,11 @@ userRouter.route("/logout").post(verifyJwt, logoutUser);
 
 userRouter.route("/refreshToken").post(refreshAccessToken);
 
-userRouter.route("/change-password").post(verifyJwt, changeCurrentPassword);
+userRouter.route("/changePassword").post(verifyJwt, changeCurrentPassword);
 
 userRouter.route("/currentUser").get(verifyJwt, getCurrentUser);
 
-userRouter.route("/update-account").patch(verifyJwt, updateAccountDetails);
+userRouter.route("/updateAccount").patch(verifyJwt, updateAccountDetails);
 
 userRouter
   .route("/avatar")

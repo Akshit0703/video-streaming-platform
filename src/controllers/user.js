@@ -5,7 +5,7 @@ import uploadOnCloudinary from "../utils/cloudinary.js";
 import ApiResponse from "../utils/apiResponse.js";
 import jwt from "jsonwebtoken";
 import { response } from "express";
-import { Mongoose } from "mongoose";
+import { mongoose } from "mongoose";
 
 const generateAccessTokenAndRefreshToken = async (userId) => {
   try {
@@ -229,35 +229,37 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(new ApiResponse(200, {}, "Password Changed Successfully"));
+    .json(new ApiResponse(200, "Password Changed Successfully"));
 });
 
 const getCurrentUser = asyncHandler(async (req, res) => {
   return res
     .status(200)
-    .json(200, req.user, "Current user fetched successfully");
+    .json(new ApiResponse(200, req.user, "Current user fetched successfully"));
 });
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
-  const { fullName, email } = req.body;
+  const { fullname, email } = req.body;
 
-  if (!fullName && !email) {
+  if (!fullname && !email) {
     throw new ApiError(
       400,
       "No changes are made in either email or fullName field"
     );
   }
-
-  const user = UserSchema.findByIdAndUpdate(
+  console.log(fullname);
+  const user = await UserSchema.findByIdAndUpdate(
     req.user?._id,
     {
       $set: {
         email: email,
-        fullName: fullName,
+        fullname: fullname,
       },
     },
     { new: true }
   ).select("-password");
+
+  console.log(user);
 
   return res
     .status(200)
@@ -286,7 +288,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
   ).select("-password");
   return res
     .status(200)
-    .json(200, new ApiResponse(200, user, "Avatar updated successfully"));
+    .json(new ApiResponse(200, req.user, "Avatar updated successfully"));
 });
 
 const updateUserCoverImage = asyncHandler(async (req, res) => {
@@ -312,7 +314,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
 
   return res
     .status(200)
-    .json(200, new ApiResponse(200, user, "Cover Image updated successfully"));
+    .json(new ApiResponse(200, user, "Cover Image updated successfully"));
 });
 
 const getUserChannelProfile = asyncHandler(async (req, res) => {
@@ -374,23 +376,23 @@ const getUserChannelProfile = asyncHandler(async (req, res) => {
       },
     },
   ]);
-
-  if (!channel?.length()) {
+  if (!channel.length) {
     throw new ApiError(400, "Channel does not exist");
   }
 
   return res
     .status(200)
-    .json(new ApiResponse(200, "User Channel fetched successfully"));
+    .json(new ApiResponse(200, channel, "User Channel fetched successfully"));
 });
 
 const getWatchHistory = asyncHandler(async (req, res) => {
   const User = await UserSchema.aggregate([
     {
       $match: {
-        _id: new Mongoose.Types.ObjectId(req.user._id),
+        _id: new mongoose.Types.ObjectId(req.user._id),
       },
-
+    },
+    {
       $lookup: {
         from: "videos",
         localField: "watchHistory",
