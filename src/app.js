@@ -1,4 +1,4 @@
-import express from "express";
+  import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
@@ -18,7 +18,9 @@ app.use(cookieParser());
 //routes import
 
 import userRouter from "./routes/user.js";
+import subscriptionRouter from "./routes/subscription.js";
 
 app.use("/api/v1/users", userRouter); // passes control to the user router using middleware
+app.use("/api/v1/subscription", subscriptionRouter);
 
 export { app };

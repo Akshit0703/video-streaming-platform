@@ -1,5 +1,5 @@
 PORT = 8000
-MONGODB_URI = mongodb+srv://akshitlakhanpal07_db_user:Akshit123@cluster0.fau7dnt.mongodb.net
+MONGODB_URI = mongodb://akshitlakhanpal07_db_user:Akshit2003@ac-hg5bbyo-shard-00-00.fau7dnt.mongodb.net:27017,ac-hg5bbyo-shard-00-01.fau7dnt.mongodb.net:27017,ac-hg5bbyo-shard-00-02.fau7dnt.mongodb.net:27017/videotube?ssl=true&replicaSet=atlas-c0kcw9-shard-0&authSource=admin&appName=Cluster0
 CORS_ORIGIN=*
 ACCESS_TOKEN_SECRET=UR2C98NPROIUQ29R0P23R902OPRU2390R2U3R0923   
 ACCESS_TOKEN_EXPIRY=1d

@@ -99,7 +99,8 @@ const loginUser = asyncHandler(async (req, res) => {
   const User = await UserSchema.findOne({
     $or: [{ username }, { email }],
   });
-
+  console.log(username, email);
+  
   if (!User) {
     throw new ApiError(404, "User not found");
   }
@@ -110,7 +111,9 @@ const loginUser = asyncHandler(async (req, res) => {
     throw new ApiError(401, "Invalid User Credentials");
   }
 
-  const { accessToken, refreshToken } =
+
+
+const { accessToken, refreshToken } =
     await generateAccessTokenAndRefreshToken(User._id);
 
   const loggedInUser = await UserSchema.findById(User._id).select(
